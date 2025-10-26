@@ -1,0 +1,36 @@
+# Python caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Generated data and figures
+data/processed/*.csv
+reports/figures/*.png
+reports/figures/*.jpg
+reports/figures/*.jpeg
+reports/figures/*.svg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
