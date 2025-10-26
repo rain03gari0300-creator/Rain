@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto EDA: Salud del Sueño y Costos de Seguro Médico</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            border-left: 4px solid #3498db;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #7f8c8d;
+        }
+        .project-section {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .info-box {
+            background-color: #ecf0f1;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .code-block {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        ul li:before {
+            content: "▸ ";
+            color: #3498db;
+            font-weight: bold;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #bdc3c7;
+            text-align: center;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Proyecto de Análisis Exploratorio de Datos (EDA)</h1>
+    
+    <div class="project-section">
+        <h2>📊 Descripción del Proyecto</h2>
+        <p>
+            Este proyecto contiene dos análisis exploratorios de datos completos y profesionales:
+        </p>
+        <ol>
+            <li><strong>Salud del Sueño y Estilo de Vida</strong> (Clasificación)</li>
+            <li><strong>Costos de Seguro Médico</strong> (Regresión)</li>
+        </ol>
+        <p>
+            Cada análisis incluye preprocesamiento de datos, análisis univariado y bivariado, 
+            detección de valores atípicos, análisis de correlación, y división de datos para 
+            entrenamiento y prueba.
+        </p>
+    </div>
+
+    <div class="project-section">
+        <h2>🗂️ Estructura del Proyecto</h2>
+        <div class="code-block">
+sleep-insurance-eda/
+├── data/
+│   ├── raw/                    # Coloque aquí los archivos CSV
+│   └── processed/              # Datos procesados y divisiones
+├── reports/
+│   ├── figures/                # Gráficos generados
+│   └── notebooks/              # Notebooks resumen
+├── src/
+│   ├── utils.py                # Funciones auxiliares
+│   ├── eda_sleep.py            # Pipeline EDA para sueño
+│   └── eda_insurance.py        # Pipeline EDA para seguros
+├── docs/
+│   └── index.html              # Esta página
+├── README.md                   # Documentación completa
+├── requirements.txt            # Dependencias
+└── .gitignore                  # Archivos ignorados
+        </div>
+    </div>
+
+    <div class="project-section">
+        <h2>🚀 Cómo Ejecutar</h2>
+        
+        <h3>1. Preparar el entorno</h3>
+        <div class="code-block">
+cd sleep-insurance-eda
+python -m venv .venv
+source .venv/bin/activate  # En Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+        </div>
+
+        <h3>2. Agregar los datasets</h3>
+        <div class="info-box">
+            <p>Coloque los siguientes archivos CSV en <code>data/raw/</code>:</p>
+            <ul>
+                <li><code>Sleep_health_and_lifestyle_dataset.csv</code></li>
+                <li><code>insurance.csv</code></li>
+            </ul>
+        </div>
+
+        <h3>3. Ejecutar los análisis</h3>
+        <div class="code-block">
+# Análisis de salud del sueño
+python src/eda_sleep.py
+
+# Análisis de costos de seguro médico
+python src/eda_insurance.py
+        </div>
+    </div>
+
+    <div class="project-section">
+        <h2>📈 Resultados</h2>
+        
+        <h3>Salud del Sueño (Clasificación)</h3>
+        <ul>
+            <li>Target: <code>sleep_disorder</code></li>
+            <li>Figuras generadas: <code>reports/figures/sleep_*.png</code></li>
+            <li>Datos procesados: <code>data/processed/sleep_*.csv</code></li>
+            <li>División: 80% entrenamiento / 20% prueba (estratificada por clase)</li>
+        </ul>
+
+        <h3>Costos de Seguro Médico (Regresión)</h3>
+        <ul>
+            <li>Target: <code>charges</code> (con transformación log)</li>
+            <li>Figuras generadas: <code>reports/figures/insurance_*.png</code></li>
+            <li>Datos procesados: <code>data/processed/insurance_*.csv</code></li>
+            <li>División: 80% entrenamiento / 20% prueba (estratificada por cuantiles)</li>
+        </ul>
+    </div>
+
+    <div class="project-section">
+        <h2>📖 Decisiones de Análisis</h2>
+        
+        <h3>Filtrado de Valores Atípicos (IQR)</h3>
+        <p>
+            Se utiliza el método IQR (Rango Intercuartílico) para detectar y remover valores atípicos. 
+            Este método es robusto y no asume una distribución normal. Los valores fuera del rango 
+            [Q1 - 1.5*IQR, Q3 + 1.5*IQR] se consideran atípicos.
+        </p>
+
+        <h3>Selección de Características</h3>
+        <ul>
+            <li><strong>Salud del Sueño:</strong> Se elimina <code>bp_diastolic</code> si la correlación 
+                con <code>bp_systolic</code> es > 0.8 (reduce multicolinealidad)</li>
+            <li><strong>Seguros:</strong> Se elimina <code>region</code> debido a baja correlación 
+                con el target (< 0.1)</li>
+        </ul>
+
+        <h3>División de Datos</h3>
+        <ul>
+            <li><strong>Clasificación:</strong> División 80/20 estratificada por clase del target</li>
+            <li><strong>Regresión:</strong> División 80/20 estratificada por cuantiles del target (q=5)</li>
+        </ul>
+    </div>
+
+    <div class="project-section">
+        <h2>🌐 Habilitar GitHub Pages</h2>
+        <div class="info-box">
+            <p>Para publicar este sitio usando GitHub Pages:</p>
+            <ol>
+                <li>Ve a la configuración de tu repositorio en GitHub</li>
+                <li>Navega a <strong>Settings → Pages</strong></li>
+                <li>En <strong>Source</strong>, selecciona la rama <code>main</code></li>
+                <li>En <strong>Folder</strong>, selecciona <code>/sleep-insurance-eda/docs</code></li>
+                <li>Haz clic en <strong>Save</strong></li>
+                <li>Tu sitio estará disponible en: <code>https://[usuario].github.io/[repo]/</code></li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="project-section">
+        <h2>📚 Documentación Adicional</h2>
+        <ul>
+            <li><a href="../README.md">README completo del proyecto</a></li>
+            <li><a href="../reports/notebooks/sleep_eda.ipynb">Notebook: Análisis de Sueño</a></li>
+            <li><a href="../reports/notebooks/insurance_eda.ipynb">Notebook: Análisis de Seguros</a></li>
+            <li><a href="../reports/figures/">Directorio de figuras generadas</a></li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        <p>Proyecto EDA - Salud del Sueño y Costos de Seguro Médico</p>
+        <p>© 2025 - Análisis de Datos</p>
+    </div>
+</body>
+</html>
